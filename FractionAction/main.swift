@@ -1,139 +1,120 @@
-//
-//  main.swift
-//  ChipsFastFoodEmporium
-//
-//  Created by Gordon, Russell on 2018-04-04.
-//  Copyright © 2018 Gordon, Russell. All rights reserved.
-//
-
 import Foundation
 
 // INPUT
-// Collect and filter user input here
-//Global numerator
 var numerator = 0
-
-//Global denominator
 var denominator = 0
 
-//Loop until valid numerator input is found
-while 2 == 2 {
-    
-    //Prompt for numerator
-    print("Numerator?")
-    
-    //Wait for numerator
-    let numeratorInput = readLine()
-    
-    //Check for nil
-    guard let givenInput = numeratorInput else {
-        //Failed input, back to start
-        continue
-    }
-    
-    //Check for integers
-    guard let givenInteger = Int(givenInput) else {
-        //Failed input, back to start
-        continue
-    }
-    
-    //Check for boundary
-    if givenInteger < 0 {
-        //Failed input
-        continue
-    }
-    
-    //Passed tests
-    
-    numerator = givenInteger
-    break
-}
-
-//Loop until valid numerator input is found
-while 2 == 2 {
-    
-    //Prompt for denominator
-    print("Denominator?")
-    
-    //Wait for numerator
-    let denominatorInput = readLine()
-    
-    //Check for nil
-    guard let givenInput = denominatorInput else {
-        //Failed input, back to start
-        continue
-    }
-    
-    //Check for integers
-    guard let givenInteger = Int(givenInput) else {
-        //Failed input, back to start
-        continue
-    }
-    
-    //Check for boundary
-    if givenInteger < 1 {
-        //Failed input
-        continue
-    }
-    
-    //Passed tests
-    denominator = givenInteger
-    break
-}
-
 // PROCESS
-// Implement the primary logic of the problem here
-//Find whole number
-let quotient = numerator / denominator
-let remainder = numerator % denominator
+while 1 == 1 {
+    print("numerator")
+    
+    // Waiting for input
+    guard let integerNumerator = readLine() else {
+        continue
+        // Check for nil
+    }
+    //test 2:
+    guard let givenInput = Int(integerNumerator)else{
+        continue
+    }
+    //test 3:
+    if givenInput < 0 {
+        continue
+    }
+    numerator = givenInput
+    break
+}
 
-print("The result is:")
-print(quotient)
+while 1 == 1 {
+    print("denominator")
+    
+    //wait for the input
+    guard let givenInteger = readLine() else{
+        
+        //check for nil
+        continue
+    }
+    //test 2:
+    guard let integerDenominator = Int(givenInteger) else{
+       
+        //check for integer
+        continue
+    }
+    //test 3:
+    if integerDenominator < 1 {
+        continue
+    }
+    denominator = integerDenominator
+    break
+}
 
-//// Simplify
-//// If numerator == 0,
-//// there are no fractions, so this can be skipped
-//if numerator == 0 {
-//
-//} else {
-//    // Find fraction
-//
-//    // Remainder after the whole number is
-//    remainder = numerator - wholeNumber * denominator
-//    // Simplify
-//    // Find the common factors of the remainder and the denominator
-//    for i in stride(from: remainder, through: 2, by: -1) {
-//
-//        // Divide the remainder and the denominator by the common factor
-//        if remainder%i == 0 && denominator%i == 0{
-//            denominator /= i
-//            remainder /= i
-//            continue
-//        }
-//    }
-//}
-//
-//
-//
-//// OUTPUT
-//// Report results to the user here
-//// Print out the answer (No fraction)
-//if remainder == 0 {
-//    print("The result is \(wholeNumber)")
-//}
-//    // No whole number
-//else if wholeNumber == 0 && remainder > 0
-//{
-//    print("The result is \(remainder)/\(denominator)")
-//}
-//    // Mixed fraction
-//else if wholeNumber > 0 && remainder > 0
-//{
-//    print("The result is \(wholeNumber) \(remainder)/\(denominator)")
-//}
-//    // Answer is 0
-//else
-//{
-//    print("The result is 0")
-//}
+// quotient and reminder
+var quote = numerator / denominator
 
+var remain = numerator % denominator
+
+// Whole number
+if remain == 0 {
+    
+    print("Result:", quote)
+}
+    
+    //if the reminder is the factor of the denomnator
+else if denominator % remain == 0 {
+    
+    let reducedNumerator = 1
+    
+    let reduceDenominator =  denominator / remain
+    
+    //if the quotient is 0, don't print quotient, only print reducedNumerator/reducedDonomiator
+    if quote == 0 {
+       
+        print("\(reducedNumerator)/\(reduceDenominator)")
+        
+        //if the quotient is bigger than 0, print it.
+    } else {
+        
+        print("\(quote) \(reducedNumerator)/\(reduceDenominator)")
+        }
+   
+    // the reminder is not the factor of the denomnator
+    } else  {
+    // we must reduce.
+    
+    
+    //loop backwards from the halfway point of the numerator
+  
+    
+        var GCF = 1
+    
+    //set as starting GCF // Will loop from starting number and goes through each number
+   
+    
+    for positiveFactor in stride(from: remain / 2, through: 2, by: -1){
+        print(positiveFactor)
+        //when the counter varibale "i" evenly divides into both reminder and the original denominator...we have the GCF
+        
+
+        if remain % positiveFactor == 0 && denominator % positiveFactor == 0 {
+
+            
+            
+            GCF = positiveFactor
+            break
+        }
+    }
+    //Get the finial fraction
+    
+    let finialReminder = remain / GCF
+    
+    let finialDenominator = denominator / GCF
+    
+    //if the quotient equals to 0, don't print
+    if quote == 0 {
+        print("\(finialReminder) /\(finialDenominator)")
+        //if the quotient is not, print it
+    } else {
+        print("\(quote) \(finialReminder)/\(finialDenominator)")
+        
+    }
+}
